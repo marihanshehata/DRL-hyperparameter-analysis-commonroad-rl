@@ -1,5 +1,7 @@
 """
 A utility function to be called when optimizing model hyperparameters
+this code is modified from the original commonroad-rl as we reduced/removed logging to minimize overhead
+
 """
 
 import logging
