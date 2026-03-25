@@ -1,5 +1,6 @@
 """
 Module for training an agent using stable baselines
+this code is modified from the original commonroad-rl as we reduced/removed logging to minimize overhead
 """
 import os
 
