@@ -1,2 +1,186 @@
 # DRL-hyperparameter-analysis-commonroad-rl
+
 Hyperparameter sensitivity and regime analysis of PPO and SAC for autonomous driving using CommonRoad-RL.
+
+---
+
+## 📌 Overview
+
+This repository contains the code and analysis for studying the effect of hyperparameters on Deep Reinforcement Learning (DRL) algorithms in autonomous driving scenarios.
+
+The experiments are conducted using the CommonRoad-RL framework, with a focus on:
+
+* PPO (Proximal Policy Optimization)
+* SAC (Soft Actor-Critic)
+
+Hyperparameter optimization is performed using Optuna, and results are analyzed to understand performance sensitivity across different configurations and random seeds.
+
+---
+
+## 📁 Project Structure
+
+```
+project/
+│
+├── README.md
+├── analysis/
+│   ├── notebooks/        # Jupyter notebooks for analysis and visualization
+│   └── results/          # Processed results and figures
+│
+├── optuna_trials/
+│   ├── run_optuna.py     # Main script to run all Optuna studies
+│   ├── config.yaml       # (optional) experiment configuration
+│   ├── create_optuna_study.py
+│   ├── train_model_nologging.py
+│   └── utils_run/
+│       ├── hyperparams_opt.py
+│       └── callbacks_nologging.py
+│
+└── requirements.txt
+```
+
+---
+
+## ⚙️ Optuna Trials Generation
+
+Hyperparameter optimization is performed using Optuna with the following design:
+
+* Each experiment corresponds to a specific:
+
+  * algorithm (PPO or SAC)
+  * random seed
+* Each experiment is stored in a **separate PostgreSQL database**
+* Each database contains exactly one Optuna study
+
+### 🔁 Running Experiments
+
+All studies can be reproduced using:
+
+```bash
+python optuna_trials/run_optuna.py
+```
+
+This script:
+
+1. Creates a PostgreSQL database for each (algorithm, seed) pair
+2. Initializes an Optuna study
+3. Runs hyperparameter optimization via `train_model_nologging.py`
+
+---
+
+## 🗄️ Storage Design
+
+Each Optuna study is stored in a **separate PostgreSQL database**.
+
+### Naming Convention
+
+```
+{algorithm}_seed_{seed}
+```
+
+### Example
+
+```
+ppo2_seed_2020
+ppo2_seed_2021
+sac_seed_2020
+```
+
+Each database contains a single study with the same name.
+
+---
+
+## 🔧 Modifications to CommonRoad-RL
+
+This work builds on the original CommonRoad-RL framework with the following modifications:
+
+### 1. Modified Hyperparameter Search Space
+
+* The hyperparameter ranges for PPO and SAC were adapted
+* This enables a more comprehensive and controlled exploration of the search space
+
+### 2. Logging Disabled
+
+* Logging was removed or reduced to minimize overhead
+* This improves runtime performance during large-scale Optuna studies
+
+### 3. Optuna Storage Backend Changed
+
+* Default storage (e.g., pickle/in-memory) was replaced with **PostgreSQL**
+* This allows:
+
+  * persistent storage
+  * scalability
+  * safer parallel or repeated runs
+
+### 4. Study Isolation via Databases
+
+* Each study is stored in a **separate PostgreSQL database**
+* Ensures:
+
+  * full isolation between experiments
+  * no naming conflicts
+  * easier debugging and reproducibility
+
+---
+
+## 🔁 Reproducibility
+
+To reproduce the experiments:
+
+1. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Set up PostgreSQL:
+
+* Create a user and enable database creation
+* Ensure connection string format:
+
+```
+postgresql://user:password@localhost:5432/
+```
+
+3. Run:
+
+```bash
+python optuna_trials/run_optuna.py
+```
+
+---
+
+## 📊 Analysis
+
+All analysis is located in:
+
+```
+analysis/notebooks/
+```
+
+This includes:
+
+* performance comparison across seeds
+* hyperparameter sensitivity analysis
+* visualization of optimization results
+
+---
+
+## 📌 Notes
+
+* The original CommonRoad-RL codebase is **not included** in this repository.
+* Only the modified components required for the experiments are provided.
+* Users must clone the original framework separately and integrate the provided modifications.
+
+---
+
+## 🎯 Purpose
+
+This repository is designed to:
+
+* study the effect of hyperparameters in DRL for autonomous driving
+* provide reproducible Optuna-based experimentation
+* support further research in hyperparameter optimization and RL robustness
+
+---
