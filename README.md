@@ -43,14 +43,18 @@ project/
 
 ## ⚙️ Optuna Trials Generation
 
-Hyperparameter optimization is performed using Optuna with the following design:
+Hyperparameter optimization is performed using Optuna to generate 5 Optuna studies for each algorithm with the following design:
 
-* Each experiment corresponds to a specific:
-
+* sampler: Random search
+* Pruner: No pruner 
+* Each Optuna study corresponds to a specific:
   * algorithm (PPO or SAC)
   * random seed
+    
 * Each experiment is stored in a **separate PostgreSQL database**
 * Each database contains exactly one Optuna study
+* each study contains a 100 Compelete Optuna trials
+   
 
 ### 🔁 Running Experiments
 
@@ -64,7 +68,7 @@ This script:
 
 1. Creates a PostgreSQL database for each (algorithm, seed) pair
 2. Initializes an Optuna study
-3. Runs hyperparameter optimization via `train_model_nologging.py`
+3. Runs hyperparameter optimization via `train_model.py`
 
 ---
 
@@ -81,9 +85,9 @@ Each Optuna study is stored in a **separate PostgreSQL database**.
 ### Example
 
 ```
-ppo2_seed_2020
-ppo2_seed_2021
-sac_seed_2020
+ppo2_seed_0
+ppo2_seed_42
+sac_seed_123
 ```
 
 Each database contains a single study with the same name.
@@ -107,20 +111,12 @@ This work builds on the original CommonRoad-RL framework with the following modi
 ### 3. Optuna Storage Backend Changed
 
 * Default storage (e.g., pickle/in-memory) was replaced with **PostgreSQL**
-* This allows:
-
-  * persistent storage
-  * scalability
-  * safer parallel or repeated runs
+* This allows  persistent storage, scalability and safer parallel or repeated runs
 
 ### 4. Study Isolation via Databases
 
 * Each study is stored in a **separate PostgreSQL database**
-* Ensures:
 
-  * full isolation between experiments
-  * no naming conflicts
-  * easier debugging and reproducibility
 
 ---
 
@@ -156,12 +152,11 @@ python optuna_trials/run_optuna.py
 All analysis is located in:
 
 ```
-analysis/notebooks/
+analysis/script/
 ```
 
 This includes:
 
-* performance comparison across seeds
 * hyperparameter sensitivity analysis
 * visualization of optimization results
 
