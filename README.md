@@ -4,7 +4,7 @@ Hyperparameter sensitivity and regime analysis of PPO and SAC for autonomous dri
 
 ---
 
-## 📌 Overview
+## Overview
 
 This repository contains the code and analysis for studying the effect of hyperparameters on Deep Reinforcement Learning (DRL) algorithms in autonomous driving scenarios.
 
@@ -17,7 +17,7 @@ Hyperparameter optimization is performed using **Optuna**, and results are analy
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 project/
@@ -56,7 +56,7 @@ Hyperparameter optimization is performed using Optuna to generate 5 Optuna studi
 * each study contains a 100 Compelete Optuna trials
    
 
-### 🔁 Running Experiments
+### Running Experiments
 
 All studies can be reproduced using:
 
@@ -72,7 +72,7 @@ This script:
 
 ---
 
-## 🗄️ Storage Design
+## Storage Design
 
 Each Optuna study is stored in a **separate PostgreSQL database**.
 
@@ -94,7 +94,7 @@ Each database contains a single study with the same name.
 
 ---
 
-## 🔧 Modifications to CommonRoad-RL
+## Modifications to CommonRoad-RL
 
 This work builds on the original CommonRoad-RL framework with the following modifications:
 
@@ -120,7 +120,7 @@ This work builds on the original CommonRoad-RL framework with the following modi
 
 ---
 
-## 🔁 Reproducibility
+## Reproducibility
 
 To reproduce the experiments:
 
@@ -145,7 +145,7 @@ python optuna_trials/run_optuna.py
 
 ---
 
-## 📊 Analysis
+## Analysis
 
 All analysis is located in:
 
@@ -160,7 +160,7 @@ This includes:
 
 ---
 
-## 📌 Notes
+## Notes
 
 * The original CommonRoad-RL codebase is **not included** in this repository.
 * Only the modified components required for the experiments are provided.
@@ -168,7 +168,7 @@ This includes:
 
 ---
 
-## 🎯 Purpose
+##  Purpose
 
 This repository is designed to:
 
