@@ -122,20 +122,37 @@ This work builds on the original CommonRoad-RL framework with the following modi
 
 ## Reproducibility
 
-To reproduce the experiments:
+This project builds on:
 
-1. Install dependencies:
+CommonRoad-RL
+highD dataset (for traffic scenarios)
 
+Please install CommonRoad-RL separately and ensure it is accessible in your environment.
+
+1. Install dependencies
+
+Create a virtual environment (recommended), then install:
+
+```bash
+pip install -r requirements.txt
+```
+
+The experiments were developed using Python 3.7.12
 
 
 2. Set up PostgreSQL:
 
-* Create a user and enable database creation
-* Ensure connection string format:
+Install and run PostgreSQL, then:
+
+Create a user (e.g., optuna)
+Ensure the user has permission to create databases
+
+The connection string format used in this project is:
 
 ```
 postgresql://user:password@localhost:5432/
 ```
+Each Optuna study will automatically create and use a separate database.
 
 3. Run:
 
@@ -155,8 +172,10 @@ analysis/script/
 
 This includes:
 
-* hyperparameter sensitivity analysis
+* hyperparameter sensitivity analysis fANOVA (functional ANOVA)
 * visualization of optimization results
+* Clustering of hyperparameter configurations using K-Means
+* plotting learning curves for prolonged training of choosen learning regiemes
 
 ---
 
