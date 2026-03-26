@@ -8,3 +8,4 @@ psutil 5.9.0
 numpy
 tensorflow
 stable-baselines 2.10.2
+fanova 2.0.19
