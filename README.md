@@ -29,7 +29,7 @@ project/
 │
 ├── optuna_trials/
 │   ├── run_optuna.py     # Main script to run all Optuna studies
-│   ├── config.yaml       # (optional) experiment configuration
+│   ├── configs.yaml       # (optional) experiment configuration
 │   ├── create_optuna_study.py
 │   ├── train_model_nologging.py
 │   └── utils_run/
