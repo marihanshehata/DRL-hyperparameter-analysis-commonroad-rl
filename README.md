@@ -8,12 +8,12 @@ Hyperparameter sensitivity and regime analysis of PPO and SAC for autonomous dri
 
 This repository contains the code and analysis for studying the effect of hyperparameters on Deep Reinforcement Learning (DRL) algorithms in autonomous driving scenarios.
 
-The experiments are conducted using the CommonRoad-RL framework and the highD dataset , with a focus on:
+The experiments are conducted using the **CommonRoad-RL** framework and the **highD dataset** , with a focus on:
 
 * PPO (Proximal Policy Optimization)
 * SAC (Soft Actor-Critic)
 
-Hyperparameter optimization is performed using Optuna, and results are analyzed to understand performance sensitivity across different configurations and random seeds.
+Hyperparameter optimization is performed using **Optuna**, and results are analyzed to understand performance sensitivity across different configurations and random seeds.
 
 ---
 
@@ -126,9 +126,7 @@ To reproduce the experiments:
 
 1. Install dependencies:
 
-```bash
-pip install -r requirements.txt
-```
+
 
 2. Set up PostgreSQL:
 
