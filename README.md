@@ -3,6 +3,19 @@
 Hyperparameter sensitivity and regime analysis of PPO and SAC for autonomous driving using CommonRoad-RL.
 
 ---
+## 📄 Publications
+
+This repository supports the experiments and analysis presented in the following works:
+
+### Published Paper
+
+* "Hyperparameter Sensitivity Analysis of Deep Reinforcement Learning for Autonomous Driving"
+  Available at: https://aircconline.com/csit/papers/vol15/csit152205.pdf
+
+### Submitted Paper
+
+* "Hyperparameter Regimes and Learning Dynamics in Deep
+Reinforcement Learning for Autonomous Driving" *(under review)*
 
 ## Overview
 
@@ -196,3 +209,4 @@ This repository is designed to:
 * support further research in hyperparameter optimization and RL robustness
 
 ---
+
